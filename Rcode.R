@@ -10,6 +10,7 @@ set.seed(123)
 # Load libraries ----------------------------------------------------------
 library(tidyverse)
 library(DESeq2)
+library(ComplexHeatmap)
 library(org.Mm.eg.db)
 library(clusterProfiler)
 library(RColorBrewer)
@@ -27,6 +28,23 @@ save.image("Rproject_image.RData")
 read_raw <- read.table("./gene_expression.xls", sep = "\t",header = T)
 ctdata <- read_raw[, 3:10]
 ctdata <- as.data.frame(ctdata)
+
+reads_tpm <- read.table("./TPM_table_gene.csv", sep = ",",header = T)
+
+QC_genes <- c("Cx3cr1", "P2ry12", "Tmem119", "Hexb", "Olfml3", "Ccl3", "Itgam",
+              "Aldh1l1", "Gfap","Atp1b2", "Aqp4", "Sox9", "Slc4a4", "Mlc1", 
+              "Stmn2", "Rbfox3", "Syt1", "Syn1",
+              "Pecam1", "Ocln",
+              "Pdgfra", "Cspg4")
+
+QC_genes_tpm <- reads_tpm[which(reads_tpm$gene_symbol %in% QC_genes),]
+rownames(QC_genes_tpm) <- QC_genes_tpm$gene_symbol
+QC_genes_tpm <- as.matrix(QC_genes_tpm[,-c(1,2)])
+QC_genes_tpm <- log(QC_genes_tpm+1, base = 10)
+Heatmap(QC_genes_tpm, 
+        cluster_columns = F,
+        row_order = QC_genes,)
+
 
 #check NA
 anyNA(ctdata)
