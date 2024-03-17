@@ -3,7 +3,7 @@ This repo is for codes used for bulk RNAseq analysis in Dr. Dheer's Gi microglia
 
 BioRxiv Link of this paper: https://www.biorxiv.org/content/10.1101/2023.05.28.542660v1.abstract
 
-This study has been officially accepted.
+**This study has now been officially accepted.**
 
 Aastha Dheer, Dale B. Bosco, Jiaying Zheng, Lingxiao Wang, Shunyi Zhao, Koichiro Haruwaka, Min-Hee Yi, Abhijeet Barath, Dai-Shi Tian, Long-Jun Wu,
 Chemogenetic approaches reveal dual functions of microglia in seizures,
